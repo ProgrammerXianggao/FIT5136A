@@ -2,32 +2,72 @@
 /**
  * Write a description of class Payment here.
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author (Team 41)
+ * @version (3/10/2018)
  */
 public class Payment
 {
-    // instance variables - replace the example below with your own
-    private int x;
+    private String recipientName;
+    private String emailAddress;
+    private int phoneNumber;
+    private String deliveryAddress;
 
     /**
      * Constructor for objects of class Payment
      */
     public Payment()
     {
-        // initialise instance variables
-        x = 0;
+        recipientName = "Recipient";
+        emailAddress = "email@example.com";
+        phoneNumber = 0;
+        deliveryAddress = "Blank";
+    }
+    
+    public Payment(String name, String email, int phone, String address)
+    {
+        recipientName = name;
+        emailAddress = email;
+        phoneNumber = phone;
+        deliveryAddress = address;
     }
 
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     */
-    public int sampleMethod(int y)
+    public String getRecipentName()
     {
-        // put your code here
-        return x + y;
+        return recipientName;
+    }
+    
+    public void setRecipientName(String name)
+    {
+        recipientName = name;
+    }
+    
+    public String getEmailAddress()
+    {
+        return emailAddress;
+    }
+    
+    public void setEmailAddress(String email)
+    {
+        emailAddress = email;
+    }
+    
+    public int getPhoneNumber()
+    {
+        return phoneNumber;
+    }
+    
+    public void setPhoneNumber(int phone)
+    {
+        phoneNumber = phone;
+    }
+    
+    public String getDeliveryAddress()
+    {
+        return deliveryAddress;
+    }
+    
+    public void setDeliveryAddress(String address)
+    {
+        deliveryAddress = address;
     }
 }
