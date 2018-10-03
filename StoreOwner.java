@@ -5,7 +5,7 @@
  * @author (Team 41)
  * @version (3/10/2018)
  */
-public class StoreOwner
+public class StoreOwner extends User
 {
     // instance variables - replace the example below with your own
     private String emailAddress;
