@@ -10,8 +10,8 @@ public class Customer extends User
     /**
      * Constructor for objects of class Customer
      */
-    public Customer()
+    public Customer(int customerID, String customerName, String customerAuthority, String customerPassword)
     {
-        
+        super(customerID, customerName, customerAuthority, customerPassword);
     }
 }

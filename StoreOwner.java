@@ -7,16 +7,15 @@
  */
 public class StoreOwner extends User
 {
-    // instance variables - replace the example below with your own
     private String emailAddress;
     private String phoneNumber;
 
     /**
      * Constructor for objects of class StoreOwner
      */
-    public StoreOwner()
+    public StoreOwner(int ownerID, String ownerName, String ownerAuthority, String ownerPassword)
     {
-        // initialise instance variables
+        super(ownerID, ownerName, ownerAuthority, ownerPassword);
         emailAddress = "email@example.com";
         phoneNumber = "012345678";
     }
