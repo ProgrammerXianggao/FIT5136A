@@ -1,19 +1,19 @@
 
 /**
- * Write a description of class bbb here.
+ * Write a description of class Cart here.
  *
  * @author (your name)
  * @version (a version number or a date)
  */
-public class bbb
+public class Cart
 {
     // instance variables - replace the example below with your own
     private int x;
 
     /**
-     * Constructor for objects of class bbb
+     * Constructor for objects of class Cart
      */
-    public bbb()
+    public Cart()
     {
         // initialise instance variables
         x = 0;
