@@ -2,13 +2,14 @@
 /**
  * Write a description of class StoreOwner here.
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author (Team 41)
+ * @version (3/10/2018)
  */
 public class StoreOwner
 {
     // instance variables - replace the example below with your own
-    private int x;
+    private String emailAddress;
+    private String phoneNumber;
 
     /**
      * Constructor for objects of class StoreOwner
@@ -16,18 +17,33 @@ public class StoreOwner
     public StoreOwner()
     {
         // initialise instance variables
-        x = 0;
+        emailAddress = "email@example.com";
+        phoneNumber = "012345678";
     }
-
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     */
-    public int sampleMethod(int y)
+    
+    public StoreOwner(String email, String phone)
     {
-        // put your code here
-        return x + y;
+        emailAddress = email;
+        phoneNumber = phone;
+    }
+    
+    public String getEmailAddress()
+    {
+        return emailAddress;
+    }
+    
+    public void setEmailAddress(String email)
+    {
+        emailAddress = email;
+    }
+    
+    public String getPhoneNumber()
+    {
+        return phoneNumber;
+    }
+    
+    public void setPhoneNumber(String phone)
+    {
+        phoneNumber = phone;
     }
 }

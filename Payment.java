@@ -9,7 +9,7 @@ public class Payment
 {
     private String recipientName;
     private String emailAddress;
-    private int phoneNumber;
+    private String phoneNumber;
     private String deliveryAddress;
 
     /**
@@ -19,11 +19,11 @@ public class Payment
     {
         recipientName = "Recipient";
         emailAddress = "email@example.com";
-        phoneNumber = 0;
+        phoneNumber = "012345678";
         deliveryAddress = "Blank";
     }
     
-    public Payment(String name, String email, int phone, String address)
+    public Payment(String name, String email, String phone, String address)
     {
         recipientName = name;
         emailAddress = email;
@@ -51,12 +51,12 @@ public class Payment
         emailAddress = email;
     }
     
-    public int getPhoneNumber()
+    public String getPhoneNumber()
     {
         return phoneNumber;
     }
     
-    public void setPhoneNumber(int phone)
+    public void setPhoneNumber(String phone)
     {
         phoneNumber = phone;
     }
