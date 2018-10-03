@@ -1,19 +1,19 @@
 
 /**
- * Write a description of class aaa here.
+ * Write a description of class bbb here.
  *
  * @author (your name)
  * @version (a version number or a date)
  */
-public class aaa
+public class bbb
 {
     // instance variables - replace the example below with your own
     private int x;
 
     /**
-     * Constructor for objects of class aaa
+     * Constructor for objects of class bbb
      */
-    public aaa()
+    public bbb()
     {
         // initialise instance variables
         x = 0;
