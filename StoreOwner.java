@@ -20,8 +20,9 @@ public class StoreOwner extends User
         phoneNumber = "012345678";
     }
     
-    public StoreOwner(String email, String phone)
+    public StoreOwner(int ownerID, String ownerName, String ownerAuthority, String ownerPassword, String email, String phone)
     {
+        super(ownerID, ownerName, ownerAuthority, ownerPassword);
         emailAddress = email;
         phoneNumber = phone;
     }
