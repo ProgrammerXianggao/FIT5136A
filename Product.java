@@ -1,3 +1,8 @@
+ 
+
+import java.util.Date;
+import java.util.Calendar;
+import java.text.SimpleDateFormat;
 
 /**
  * Write a description of class Product here.
@@ -8,15 +13,33 @@
 public class Product
 {
     // instance variables - replace the example below with your own
-    private int x;
-
+    private int productID;
+    private String productName;
+    private String saleMethod;
+    private int shelfLife;
+    private String source;
+    private String category;
+    private double price;
+//    private int quantity;
+//    private Date expiryDate;
+    
     /**
      * Constructor for objects of class Product
      */
     public Product()
     {
-        // initialise instance variables
-        x = 0;
+
+    }
+    
+    public Product(int productID,String productName,String saleMethod,int shelfLife,String source,String category,double price)
+    {
+    	this.productID = productID;
+        this.productName = productName;
+        this.saleMethod = saleMethod;
+        this.shelfLife = shelfLife;
+        this.source = source;
+        this.category = category;
+        this.price = price;
     }
 
     /**
@@ -25,9 +48,5 @@ public class Product
      * @param  y  a sample parameter for a method
      * @return    the sum of x and y
      */
-    public int sampleMethod(int y)
-    {
-        // put your code here
-        return x + y;
-    }
+
 }

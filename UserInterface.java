@@ -1,6 +1,6 @@
  
 
-import java.awt.event.ItemEvent;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -20,6 +20,7 @@ public class UserInterface
     // instance variables - replace the example below with your own
     private User user;
     private ArrayList<String> accoutInfo;
+    private ArrayList<Product> productList;
     /**
      * Constructor for objects of class UserInterface
      */
@@ -115,7 +116,36 @@ public class UserInterface
     
     public void showShelfInterface()
     {
-    	
+    	readProduct();
+    	displayProduct();
+    }
+    
+    public void readProduct()
+    {
+    	String productItem;
+    	String[] productInfo = new String[7];
+    	File file = new File("./ProductInfo");
+    	try {
+			BufferedReader br = new BufferedReader(new FileReader(file));
+			while((productItem = br.readLine()) != null)
+			{
+				
+				productInfo = productItem.split(",");
+				Product product = new Product(Integer.parseInt(productInfo[0]),productInfo[1],productInfo[2],Integer.parseInt(productInfo[3]),productInfo[4],productInfo[5],Double.parseDouble(productInfo[6]));
+//				Product product = new Product(1,"Apples-Golden-Delicious","Kg",50,"local","Fruit",3.5);
+     			productList.add(product);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+    }
+    
+    public void displayProduct()
+    {
+    	for (Product product:productList)
+    	{
+    		product.toString();
+    	}
     }
     
 
