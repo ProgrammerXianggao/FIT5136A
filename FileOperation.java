@@ -1,6 +1,7 @@
  
 
 import java.io.*;
+import java.util.ArrayList;
 
 
 public class FileOperation {
@@ -56,6 +57,26 @@ public class FileOperation {
 			BufferedWriter bw = new BufferedWriter(out);
 			bw.write(userName+","+userPassword+","+emailAddress);
 			bw.newLine();
+			bw.flush();
+			bw.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static void writeProductFile(ArrayList<Product> productList)
+	{
+		File file = new File("./ProductInfo.txt");
+		try {
+			FileWriter out = new FileWriter(file);
+			BufferedWriter bw = new BufferedWriter(out);
+			for(Product product:productList)
+			{
+				String content = product.toString(); 
+				bw.write(content);
+				bw.newLine();
+				
+			}
 			bw.flush();
 			bw.close();
 		} catch (Exception e) {

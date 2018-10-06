@@ -1,4 +1,2 @@
 1,Apples-Golden-Delicious,Kg,50,local,Fruit,3.5
-1,Apples-Golden-Delicious,Kg,50,local,Fruit,3.5
-1,Apples-Golden-Delicious,Kg,50,local,Fruit,3.5
-1,Apples-Golden-Delicious,Kg,50,local,Fruit,3.5
+2,banana,Kg,60,jkl,jkl,4.5

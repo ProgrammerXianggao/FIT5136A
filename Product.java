@@ -102,11 +102,11 @@ public class Product
 	{
 		System.out.println(productID + "  " + productName + "  " + saleMethod + "  " + shelfLife + "  " + source + "  " + category + "  " + price);
 	}
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     */
+	
+        public String toString()
+        {
+        	String toString = productID + "," + productName + "," + saleMethod + "," + shelfLife + "," + source + "," + category + "," + price;
+        	return toString;
+        }
 
 }
