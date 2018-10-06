@@ -17,6 +17,7 @@ import java.util.ArrayList;
  */
 public class UserInterface
 {
+	
     // instance variables - replace the example below with your own
     private User user;
     private ArrayList<String> accoutInfo;
@@ -24,18 +25,18 @@ public class UserInterface
     /**
      * Constructor for objects of class UserInterface
      */
+    
     public UserInterface()
     {
+    	FileOperation.createFile("AccountInfo.txt");
+    	FileOperation.initialAccountFile();
         // initialise instance variables
         user = new User();
         accoutInfo = new ArrayList<String>();
     }
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     */
+    
+    
+    
     public void initialInterface()
     {
         // put your code here
@@ -80,7 +81,7 @@ public class UserInterface
     	{
     		System.out.println("Please input your username:");
     		userName = input.nextLine();
-    		System.out.println("Please");
+    		System.out.println("Please input your password");
     		passWord = input.nextLine();
     		if(testLogin(userName,passWord))
     		{
@@ -95,7 +96,7 @@ public class UserInterface
     
     public boolean testLogin(String uName,String uPassword)
     {
-    	String AccountInfo = uName + uPassword;
+    	String AccountInfo = uName +"," + uPassword;
     	String item;
     	boolean find = false;
     	File file = new File("./AccountInfo.txt");
@@ -144,7 +145,7 @@ public class UserInterface
     {
     	for (Product product:productList)
     	{
-    		product.toString();
+    		product.displayProductInfo();
     	}
     }
     

@@ -42,6 +42,66 @@ public class Product
         this.price = price;
     }
 
+	public int getProductID() {
+		return productID;
+	}
+
+	public void setProductID(int productID) {
+		this.productID = productID;
+	}
+
+	public String getProductName() {
+		return productName;
+	}
+
+	public void setProductName(String productName) {
+		this.productName = productName;
+	}
+
+	public String getSaleMethod() {
+		return saleMethod;
+	}
+
+	public void setSaleMethod(String saleMethod) {
+		this.saleMethod = saleMethod;
+	}
+
+	public int getShelfLife() {
+		return shelfLife;
+	}
+
+	public void setShelfLife(int shelfLife) {
+		this.shelfLife = shelfLife;
+	}
+
+	public String getSource() {
+		return source;
+	}
+
+	public void setSource(String source) {
+		this.source = source;
+	}
+
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
+	public double getPrice() {
+		return price;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
+	}
+
+	public void displayProductInfo()
+	{
+		System.out.println(productID + productName + saleMethod + shelfLife + source + category + price);
+	}
     /**
      * An example of a method - replace this comment with your own
      *

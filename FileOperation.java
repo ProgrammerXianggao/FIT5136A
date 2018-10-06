@@ -1,10 +1,11 @@
+ 
 
 import java.io.*;
 
 
 public class FileOperation {
 
-	public void createAccoutFile(String fileName)
+	public static void createFile(String fileName)
 	{
 //		File file = new File("AccountInfo.txt");
 		File file = new File(fileName);
@@ -29,7 +30,7 @@ public class FileOperation {
 		}
 	}
 	
-	public void initialAccountFile()
+	public static void initialAccountFile()
 	{
 		File file = new File("./AccountInfo.txt");
 		try {
@@ -48,7 +49,7 @@ public class FileOperation {
 	
 	public void addAccountDetails(String userName,String userPassword,String emailAddress,int phoneNumber)
 	{
-		createAccoutFile("AccountDetails.txt");
+		createFile("AccountDetails.txt");
 		File file = new File("./AccountDetails.txt");
 		try {
 			FileWriter out = new FileWriter(file);
@@ -61,6 +62,8 @@ public class FileOperation {
 			e.printStackTrace();
 		}
 	}
+	
+	
 	
 	
 }
