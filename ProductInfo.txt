@@ -1,0 +1,1 @@
+1,Apples-Golden-Delicious,Kg,50,local,Fruit,3.5

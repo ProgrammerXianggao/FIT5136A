@@ -100,7 +100,7 @@ public class Product
 
 	public void displayProductInfo()
 	{
-		System.out.println(productID + productName + saleMethod + shelfLife + source + category + price);
+		System.out.println(productID + "  " + productName + "  " + saleMethod + "  " + shelfLife + "  " + source + "  " + category + "  " + price);
 	}
     /**
      * An example of a method - replace this comment with your own

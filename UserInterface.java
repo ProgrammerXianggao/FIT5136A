@@ -29,12 +29,19 @@ public class UserInterface
     public UserInterface()
     {
     	FileOperation.createFile("AccountInfo.txt");
+    	FileOperation.createFile("ProductInfo.txt");
     	FileOperation.initialAccountFile();
         // initialise instance variables
         user = new User();
         accoutInfo = new ArrayList<String>();
+        productList = new ArrayList<Product>();
     }
     
+    
+    public void main() {
+    	initialInterface();
+    	
+    }
     
     
     public void initialInterface()
@@ -125,16 +132,14 @@ public class UserInterface
     {
     	String productItem;
     	String[] productInfo = new String[7];
-    	File file = new File("./ProductInfo");
+    	File file = new File("./ProductInfo.txt");
     	try {
-			BufferedReader br = new BufferedReader(new FileReader(file));
-			while((productItem = br.readLine()) != null)
+			BufferedReader brr = new BufferedReader(new FileReader(file));
+			while((productItem = brr.readLine()) != null)
 			{
 				
 				productInfo = productItem.split(",");
 				Product product = new Product(Integer.parseInt(productInfo[0]),productInfo[1],productInfo[2],Integer.parseInt(productInfo[3]),productInfo[4],productInfo[5],Double.parseDouble(productInfo[6]));
-//				Product product = new Product(1,"Apples-Golden-Delicious","Kg",50,"local","Fruit",3.5);
-     			productList.add(product);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -143,6 +148,7 @@ public class UserInterface
     
     public void displayProduct()
     {
+        System.out.println("----------ProductList--------");
     	for (Product product:productList)
     	{
     		product.displayProductInfo();
