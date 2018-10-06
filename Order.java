@@ -14,7 +14,8 @@ public class Order
     private int x;
     private Cart cart;
     private Date orderTime;
-    
+    private String orderCondition;
+    private Payment payment;
     /**https://www.cnblogs.com/remember-forget/p/6098462.html datetime
      * Constructor for objects of class Order
      */
@@ -23,7 +24,6 @@ public class Order
         // initialise instance variables
         orderTime = new Date();
         x = 0;
-        
     }
 
     /**
@@ -47,5 +47,30 @@ public class Order
     public Date getTime()
     {
         return orderTime;
+    }
+    
+    public void setOrderCondition(String orderCon)
+    {
+        orderCondition = orderCon;
+    }
+    
+    public String getOrderCondition()
+    {
+        return orderCondition;
+    }
+    
+    public void setPayment()
+    {
+        
+    }
+    
+    public Payment getPayment()
+    {
+        return payment;
+    }
+    
+    public void SavePayment()
+    {
+    
     }
 }
