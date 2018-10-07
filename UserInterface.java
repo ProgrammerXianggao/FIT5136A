@@ -4,10 +4,15 @@
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.lang.reflect.Array;
 import java.util.*;
 import java.util.Scanner;
 
+import javax.xml.bind.ValidationEvent;
+
+
 import java.util.ArrayList;
+
 
 
 /**
@@ -25,7 +30,9 @@ public class UserInterface
     private Customer customer;
     private ArrayList<String> accoutInfo;
     private String userStatus;
+    public static Cart cart;
     public static ArrayList<Product> productList;
+    
     /**
      * Constructor for objects of class UserInterface
      */
@@ -37,20 +44,39 @@ public class UserInterface
     	FileOperation.initialAccountFile();
         // initialise instance variables
         accoutInfo = new ArrayList<String>();
-        productList = new ArrayList<Product>();
+        productList = new ArrayList<Product>(); 
+        user = new User();
+        customer = new Customer();
     }
+    
     public void main() {
     	initialInterface();
     	if(userStatus.equals("storeOwner")) 
     	{
+    		
     		menu();
         	for(Product product:productList)
         	{
         		product.displayProductInfo();
         	}
     	}
-    	
+    	else
+    	{
+    		displayCustomerInterface();
+    	}    	
     }
+    
+    
+    
+    public void displayCustomerInterface() 
+    {
+    	System.out.println("Welcome to MVFs! " + customer.getName());
+    	showShelfInterface();
+    	System.out.println("");
+    	System.out.println("");
+    }
+    
+    
     
     public void initialInterface()
     {
@@ -80,14 +106,16 @@ public class UserInterface
 		case 2:
 			userStatus = "customer";
 			user = new User();
-			Customer customer = new Customer();
-			System.out.println(customer.getName());
+			
+//			System.out.println(customer.getName());
+			
 //			Customer customer = new Customer(customerID, customerName, customerAuthority, customerPassword)
 			break;
 		default:
 			break;
 		}
     }
+    
     
     public void loginInterface()
     {
@@ -168,6 +196,49 @@ public class UserInterface
     	{
     		product.displayProductInfo();
     	}
+    }
+    
+    
+    public void menuCustomer()
+    {
+    	boolean valid = false;
+    	while(!valid)
+    	{
+    		System.out.println("Please input your options");
+        	System.out.println("Press 1 to add product to cart");
+        	System.out.println("Press 2 to view your cart");
+        	System.out.println("Press 3 to log out");
+        	Scanner input = new Scanner(System.in);
+        	int option = input.nextInt();
+        	if (option >= 1 && option <= 3)
+        	{
+        		valid = true;
+        	}
+        	else {
+        		System.out.println("You can only input from 1 to 3");
+        	}
+        	switch (option) {
+			case 1:
+				System.out.println("Please select product id");
+				Scanner input2 = new Scanner(System.in);
+				int pid = input2.nextInt();
+				System.out.println("Please select product number");
+				Scanner input3 = new Scanner(System.in);
+				int pNumber = input3.nextInt();
+				cart = PurchaseController.addCartList(cart,pid,pNumber,productList);
+				break;
+			case 2:
+				
+				break;
+			case 3:
+				
+				break;
+			default:
+				break;
+			}
+    	}
+    	
+
     }
     
     public void menu()
