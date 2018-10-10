@@ -9,6 +9,7 @@ import java.util.Date;
 import java.util.Scanner;
 
 
+
 public class PurchaseController {
 
 	private static UserInterface ui;
@@ -41,6 +42,29 @@ public class PurchaseController {
         }
         return cart;
     }
+    
+    
+    public static String checkAvailable(int productNumber,ArrayList<ProductShelf> productShelfs)
+    {
+    	String available = "available";
+    	for(ProductShelf productShelf:productShelfs)
+    	{
+    		if (productShelf.getProduct().getProductID()==productNumber)
+    			
+    		{
+    			if(productShelf.getRequirement().equals("no"))
+    			{
+    				productShelf.setRequirement("yes");
+    			}
+    			
+    			available = productShelf.getStatus();
+    			
+    		}
+    	}
+    	FileOperation.writeShelfFile(productShelfs);
+    	return available;
+    }
+    
     
     public static void setCartList()
     {

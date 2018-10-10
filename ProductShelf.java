@@ -7,24 +7,26 @@ import java.util.Date;
 public class ProductShelf {
 
 	private  Product product;
-	private static Date shelfDate;
+	private  Date shelfDate;
 	private Date expiryDate;
 	private String status;
+	private String requirement;
 	
     public ProductShelf() {
 		
 	}
 
     
-	public ProductShelf(Product product, Date shelfDate, String status) {
+	public ProductShelf(Product product, Date shelfDate, String status , String requirement) {
 		this.product = product;
 		this.shelfDate = shelfDate;
 //		this.expiryDate = expiryDate;
 		this.status = status;
+		this.requirement = requirement;
 	}
 
 
-	public static String calculateExpiryDate(int n)
+	public String calculateExpiryDate(int n)
 	{
 		SimpleDateFormat df=new SimpleDateFormat("yyyy-MM-dd");  
 //	     SimpleDateFormat dd=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");     
@@ -40,16 +42,26 @@ public class ProductShelf {
 	
 	public void displayShelfInfo()
 	{
-		System.out.println(product.info() + "   " + calculateExpiryDate(product.getShelfLife()) + "   " + status);
+		System.out.println(product.info() + "   " + calculateExpiryDate(product.getShelfLife()) + "   " + status + "   " + requirement);
 	}
 	
 	public String toString()
 	{
-		return product.toString() + "   " + calculateExpiryDate(product.getShelfLife() ) + " " + status;
+		return product.toString() + "," + calculateExpiryDate(product.getShelfLife() ) + "," + status + "," + requirement;
 	}
 	
 
 	
+	public String getRequirement() {
+		return requirement;
+	}
+
+
+	public void setRequirement(String requirement) {
+		this.requirement = requirement;
+	}
+
+
 	public Product getProduct() {
 		return product;
 	}

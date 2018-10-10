@@ -26,7 +26,7 @@ public class ManageProductController {
 		productInfoList = productInfo.split(",");
 		Product product = new Product(Integer.parseInt(productInfoList[0]),productInfoList[1],productInfoList[2],Integer.parseInt(productInfoList[3]),productInfoList[4],productInfoList[5],Double.parseDouble(productInfoList[6]));
 		pc.productList.add(product);
-		ProductShelf productShelf = new ProductShelf(product,new Date(),"available");
+		ProductShelf productShelf = new ProductShelf(product,new Date(),"available","no");
 		pc.productShelfs.add(productShelf);
 		FileOperation.writeProductFile(pc.productList);
 		FileOperation.writeShelfFile(pc.productShelfs);
@@ -103,12 +103,14 @@ public class ManageProductController {
 			pc.productList.get(realProductNumber).setPrice(newPrice);
 			break;
 		case 7:
-		        if (pc.productShelfs.get(realProductNumber).getStatus().equals("available"))
+		
+			if (pc.productShelfs.get(realProductNumber).getStatus().equals("available"))
 			{
 				pc.productShelfs.get(realProductNumber).setStatus("out of stack");
 			}
 			else {
 				pc.productShelfs.get(realProductNumber).setStatus("available");
+				pc.productShelfs.get(realProductNumber).setRequirement("no");
 			}
 			System.out.println("Change status successful!");
 			break;

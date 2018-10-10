@@ -1,7 +1,10 @@
  
 
 import java.io.*;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+
 
 
 public class FileOperation {
@@ -143,5 +146,54 @@ public class FileOperation {
 		}
 	}
 	
+	
+	public static void readProduct()
+    {
+    	String productItem;
+    	PurchaseController.productList.clear();
+    	
+//    	int index = 0;
+    	String[] productInfo = new String[7];
+    	File file = new File("./ProductInfo.txt");
+    	try {
+			BufferedReader br = new BufferedReader(new FileReader(file));
+			while((productItem = br.readLine()) != null)
+			{
+//				index += 1;
+				productInfo = productItem.split(",");
+				Product product = new Product(Integer.parseInt(productInfo[0]),productInfo[1],productInfo[2],Integer.parseInt(productInfo[3]),productInfo[4],productInfo[5],Double.parseDouble(productInfo[6]));
+				PurchaseController.productList.add(product);
+//				ProductShelf productShelf = new ProductShelf(product,new Date(),"available");
+//				PurchaseController.productShelfs.add(productShelf);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+    }
+	
+	public static void readShelf()
+	{
+		PurchaseController.productShelfs.clear();
+		String shelfInfo = "";
+//		int index = 0;
+    	String[] shelfInfoList = new String[9];
+    	File file = new File("./Shelf.txt");
+    	try {
+			BufferedReader br = new BufferedReader(new FileReader(file));
+			while((shelfInfo = br.readLine()) != null)
+			{
+//				index += 1;
+				shelfInfoList = shelfInfo.split(",");
+				Product product = new Product(Integer.parseInt(shelfInfoList[0]),shelfInfoList[1],shelfInfoList[2],Integer.parseInt(shelfInfoList[3]),shelfInfoList[4],shelfInfoList[5],Double.parseDouble(shelfInfoList[6]));
+//				PurchaseController.productList.add(product);
+				SimpleDateFormat df=new SimpleDateFormat("yyyy-MM-dd");
+				Date date = df.parse(shelfInfoList[7]);
+				ProductShelf productShelf = new ProductShelf(product,date,shelfInfoList[8],shelfInfoList[9]);
+				PurchaseController.productShelfs.add(productShelf);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	
 }

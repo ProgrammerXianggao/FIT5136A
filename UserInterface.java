@@ -7,6 +7,8 @@ import java.io.FileReader;
 import java.util.*;
 import java.util.Scanner;
 
+
+
 import java.util.ArrayList;
 
 
@@ -160,7 +162,8 @@ public class UserInterface
     public void showShelfInterface()
     {
     	
-    	readProductAndCreateShelf();
+    	FileOperation.readProduct();
+    	FileOperation.readShelf();
     	displayProduct();
     	displayShelf();
     }
@@ -170,7 +173,7 @@ public class UserInterface
     	String productItem;
     	PurchaseController.productList.clear();
     	PurchaseController.productShelfs.clear();
-    	System.out.println("size:" + PurchaseController.productList.size());
+//    	System.out.println("size:" + PurchaseController.productList.size());
     	int index = 0;
     	String[] productInfo = new String[7];
     	File file = new File("./ProductInfo.txt");
@@ -182,7 +185,7 @@ public class UserInterface
 				productInfo = productItem.split(",");
 				Product product = new Product(Integer.parseInt(productInfo[0]),productInfo[1],productInfo[2],Integer.parseInt(productInfo[3]),productInfo[4],productInfo[5],Double.parseDouble(productInfo[6]));
 				PurchaseController.productList.add(product);
-				ProductShelf productShelf = new ProductShelf(product,new Date(),"available");
+				ProductShelf productShelf = new ProductShelf(product,new Date(),"available","no");
 				PurchaseController.productShelfs.add(productShelf);
 			}
 		} catch (Exception e) {
@@ -242,9 +245,19 @@ public class UserInterface
             		SearchController.searchProduct(keyword);
             		break;
     			case 1:
-    				System.out.println("Please select product id");
-    				Scanner input2 = new Scanner(System.in);
-    				int pid = input2.nextInt();
+    				String available = "out of stack";
+    				int pid = 0;
+    				while(available.equals("out of stack"))
+    				{
+    					System.out.println("Please select product id");
+        				Scanner input2 = new Scanner(System.in);
+        				pid = input2.nextInt();
+        				available = PurchaseController.checkAvailable(pid, PurchaseController.productShelfs);
+        				if(available.equals("out of stack"))
+        					System.out.println("This product is out of stcak");
+    				}
+    				
+    				
     				System.out.println("Please select product number");
     				Scanner input3 = new Scanner(System.in);
     				int pNumber = input3.nextInt();
