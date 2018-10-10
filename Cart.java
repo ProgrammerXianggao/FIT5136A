@@ -9,6 +9,7 @@
  */
 import java.util.ArrayList;
 
+
 public class Cart
 {
     // instance variables - replace the example below with your own
@@ -16,7 +17,14 @@ public class Cart
     private ArrayList<Product> cartList;
     private float totalPrice;
     private ArrayList<Integer> numberList;
-
+    
+    public Cart()
+    {
+    	customer = AccountController.customer;
+    	cartList = new ArrayList<Product>();
+    	totalPrice = 0;
+    	numberList = new ArrayList<Integer>();
+    }
     public ArrayList<Integer> getNumberList() {
 		return numberList;
 	}
@@ -51,10 +59,7 @@ public class Cart
      * Constructor for objects of class Cart
      */
     
-    public Cart()
-    {
-    	
-    }
+    
 
 
     

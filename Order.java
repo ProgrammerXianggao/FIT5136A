@@ -1,3 +1,4 @@
+ 
 
 /**
  * Write a description of class Order here.
@@ -11,7 +12,6 @@ import java.text.SimpleDateFormat;
 public class Order
 {
     // instance variables - replace the example below with your own
-    private int x;
     private Cart cart;
     private Date orderTime;
     private String orderCondition;
@@ -23,20 +23,37 @@ public class Order
     {
         // initialise instance variables
         orderTime = new Date();
-        x = 0;
     }
-
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     */
-    public int sampleMethod(int y)
+    
+    public Order(Cart cart,Date orderTime, String orderCondition,Payment payment)
     {
-        // put your code here
-        return x + y;
+    	this.cart = cart;
+    	this.orderTime = orderTime;
+    	this.orderCondition = orderCondition;
+    	this.payment = payment;
     }
+    
+    
+    public Cart getCart() {
+		return cart;
+	}
+
+	public void setCart(Cart cart) {
+		this.cart = cart;
+	}
+
+	public Date getOrderTime() {
+		return orderTime;
+	}
+
+	public void setOrderTime(Date orderTime) {
+		this.orderTime = orderTime;
+	}
+
+	public void setPayment(Payment payment) {
+		this.payment = payment;
+	}
+
     
     public void displayTime ()
     {
@@ -58,19 +75,12 @@ public class Order
     {
         return orderCondition;
     }
-    
-    public void setPayment()
-    {
-        
-    }
+
     
     public Payment getPayment()
     {
         return payment;
     }
     
-    public void SavePayment()
-    {
-    
-    }
+
 }

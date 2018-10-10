@@ -1,3 +1,5 @@
+ 
+
 
 /**
  * Write a description of class Customer here.
@@ -10,14 +12,20 @@ public class Customer extends User
     /**
      * Constructor for objects of class Customer
      */
-    public Customer()
-    {
-	super(1, "defaultCustomer", "customerAuthority", "123456");
-    }
+	public Customer()
+	{
+		super(1, "defaultCustomer", "customerAuthority", "123456");
+	}
 	
     public Customer(int customerID, String customerName, String customerAuthority, String customerPassword)
     {
         super(customerID, customerName, customerAuthority, customerPassword);
+    }
+    
+    public String toString()
+    {
+
+    	return super.getID() + "," + super.getName() + "," + super.getAuthority() + "," + super.getPassword();
     }
 }
 

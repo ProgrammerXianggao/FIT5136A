@@ -102,11 +102,19 @@ public class Product
 	{
 		System.out.println(productID + "  " + productName + "  " + saleMethod + "  " + shelfLife + "  " + source + "  " + category + "  " + price);
 	}
-	
-        public String toString()
-        {
-        	String toString = productID + "," + productName + "," + saleMethod + "," + shelfLife + "," + source + "," + category + "," + price;
-        	return toString;
-        }
+
+    public String toString()
+    {
+    	String toString = productID + "," + productName + "," + saleMethod + "," + shelfLife + "," + source + "," + category + "," + price;
+    	return toString;
+    }
+    
+    public String info()
+    {
+    	String info = productID + "  " + productName + "  " + saleMethod + "  " + shelfLife + "  " + source + "  " + category + "  " + price;
+    	return info;
+    }
+    
+
 
 }

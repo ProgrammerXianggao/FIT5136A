@@ -4,15 +4,10 @@
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
-import java.lang.reflect.Array;
 import java.util.*;
 import java.util.Scanner;
 
-import javax.xml.bind.ValidationEvent;
-
-
 import java.util.ArrayList;
-
 
 
 /**
@@ -24,15 +19,11 @@ import java.util.ArrayList;
 public class UserInterface
 {
 	
-    // instance variables - replace the example below with your own
-    private User user;
-    private StoreOwner storeOwner;
-    private Customer customer;
-    private ArrayList<String> accoutInfo;
+
     private String userStatus;
-    public static Cart cart;
-    public static ArrayList<Product> productList;
-    
+    private PurchaseController pc;
+    private AccountController ac;
+
     /**
      * Constructor for objects of class UserInterface
      */
@@ -40,29 +31,24 @@ public class UserInterface
     public UserInterface()
     {
     	FileOperation.createFile("AccountInfo.txt");
-//    	FileOperation.createFile("ProductInfo.txt");
     	FileOperation.initialAccountFile();
-        // initialise instance variables
-        accoutInfo = new ArrayList<String>();
-        productList = new ArrayList<Product>(); 
-        user = new User();
-        customer = new Customer();
+    	ac = new AccountController();
+    	pc = new PurchaseController();
+
     }
     
+
     public void main() {
     	initialInterface();
     	if(userStatus.equals("storeOwner")) 
     	{
     		
     		menu();
-        	for(Product product:productList)
-        	{
-        		product.displayProductInfo();
-        	}
     	}
-    	else
+    	else if(userStatus.equals("customer"))
     	{
     		displayCustomerInterface();
+    		menuCustomer();
     	}    	
     }
     
@@ -70,7 +56,7 @@ public class UserInterface
     
     public void displayCustomerInterface() 
     {
-    	System.out.println("Welcome to MVFs! " + customer.getName());
+    	System.out.println("Welcome to MVFs! " + ac.customer.getName());
     	showShelfInterface();
     	System.out.println("");
     	System.out.println("");
@@ -83,33 +69,46 @@ public class UserInterface
         // put your code here
         boolean inputResonable = false;
         int option = 0;
+        System.out.println("Welcome to MFVs!");
         while (!inputResonable)
         {
-            System.out.println("Welcome to MFVs!");
+            System.out.println("----------------------------------------");
             System.out.println("Press 1 to login as store owner");
-            System.out.println("Press 2 to purchase as a guest");
+            System.out.println("Press 2 to view product");
+            System.out.println("Press 3 to regist an account as customer");
+            System.out.println("Press 4 to login as a customer");
+            System.out.println("Press 5 to exit");
             Scanner input = new Scanner(System.in);
             option = input.nextInt();
-            if (option == 1 || option == 2)
+            if (option >= 1 & option <= 5)
             {
                 inputResonable = true;
             }
             else {
-            	System.out.println("You can only input 1 or 2!");
+            	System.out.println("You can only input 1 or 5!");
             }
         }
         switch (option) {
 		case 1:
 			userStatus = "storeOwner";
-			loginInterface();
+			loginInterface(1);
 			break;
 		case 2:
+			readProductAndCreateShelf();
+			displayShelf();
+			initialInterface();
+			break;
+		case 3:
+			
 			userStatus = "customer";
-			user = new User();
+			AccountController.regist();
+			break;
+		case 4:
+			userStatus = "customer";
+			loginInterface(2);
+			break;
+		case 5:
 			
-//			System.out.println(customer.getName());
-			
-//			Customer customer = new Customer(customerID, customerName, customerAuthority, customerPassword)
 			break;
 		default:
 			break;
@@ -117,7 +116,7 @@ public class UserInterface
     }
     
     
-    public void loginInterface()
+    public void loginInterface(int i)
     {
     	String userName;
     	String passWord;
@@ -130,121 +129,156 @@ public class UserInterface
     		userName = input.nextLine();
     		System.out.println("Please input your password");
     		passWord = input.nextLine();
-    		if(testLogin(userName,passWord))
+    		if(i == 1)
     		{
-    			flag = true;
+    			if(AccountController.testLogin(userName,passWord))
+        		{
+        			flag = true;
+        			showShelfInterface();
+        		}
+        		else {
+        			System.out.println("your account information is wrong!");
+        		}
     		}
-    		else {
-    			System.out.println("your account information is wrong!");
+    		else if(i == 2)
+    		{
+    			if(AccountController.testLoginCustomer(userName, passWord))
+    			{
+    				flag = true;
+    			}
+    			else {
+    				System.out.println("your account information is wrong!");
+    			}
     		}
     	}
-		showShelfInterface();
+//		showShelfInterface();
     }
     
-    public boolean testLogin(String uName,String uPassword)
-    {
-    	String AccountInfo = uName +"," + uPassword;
-    	String item;
-    	boolean find = false;
-    	File file = new File("./AccountInfo.txt");
-    	try {
-			BufferedReader br = new BufferedReader(new FileReader(file));
-			while((item = br.readLine()) != null)
-			{
-				if (item.equals(AccountInfo))
-				{
-					find = true;
-				}
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-    	return find;
-    }
+
     
     
     public void showShelfInterface()
     {
     	
-    	readProduct();
+    	readProductAndCreateShelf();
     	displayProduct();
+    	displayShelf();
     }
     
-    public void readProduct()
+    public void readProductAndCreateShelf()
     {
     	String productItem;
+    	PurchaseController.productList.clear();
+    	PurchaseController.productShelfs.clear();
+    	System.out.println("size:" + PurchaseController.productList.size());
+    	int index = 0;
     	String[] productInfo = new String[7];
     	File file = new File("./ProductInfo.txt");
     	try {
 			BufferedReader br = new BufferedReader(new FileReader(file));
 			while((productItem = br.readLine()) != null)
 			{
-				
+				index += 1;
 				productInfo = productItem.split(",");
 				Product product = new Product(Integer.parseInt(productInfo[0]),productInfo[1],productInfo[2],Integer.parseInt(productInfo[3]),productInfo[4],productInfo[5],Double.parseDouble(productInfo[6]));
-				productList.add(product);
+				PurchaseController.productList.add(product);
+				ProductShelf productShelf = new ProductShelf(product,new Date(),"available");
+				PurchaseController.productShelfs.add(productShelf);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
     }
     
-    public static void displayProduct()
+    public void displayProduct()
     {
     	System.out.println("----------ProductList--------");
-    	for (Product product:productList)
+    	for (Product product:PurchaseController.productList)
     	{
     		product.displayProductInfo();
+    	}
+    }
+    
+    public  void displayShelf()
+    {
+    	System.out.println("----------Shelf----------");
+    	for(ProductShelf shelf:PurchaseController.productShelfs)
+    	{
+    		shelf.displayShelfInfo();
     	}
     }
     
     
     public void menuCustomer()
     {
-    	boolean valid = false;
-    	while(!valid)
+    	boolean exit = false;
+    	while(!exit)
     	{
-    		System.out.println("Please input your options");
-        	System.out.println("Press 1 to add product to cart");
-        	System.out.println("Press 2 to view your cart");
-        	System.out.println("Press 3 to log out");
-        	Scanner input = new Scanner(System.in);
-        	int option = input.nextInt();
-        	if (option >= 1 && option <= 3)
+    		boolean valid = false;
+        	while(!valid)
         	{
-        		valid = true;
+        		System.out.println("Please input your options");
+        		System.out.println("Press 0 to search product");
+            	System.out.println("Press 1 to add product to cart");
+            	System.out.println("Press 2 to view your cart");
+            	System.out.println("Press 3 to remove product from your cart");
+            	System.out.println("Press 4 to check out");
+            	System.out.println("Press 5 to display product");
+            	System.out.println("Press 6 to log out");
+            	Scanner input = new Scanner(System.in);
+            	int option = input.nextInt();
+            	if (option >= 0 && option <= 6)
+            	{
+            		valid = true;
+            	}
+            	else {
+            		System.out.println("You can only input from 1 to 4");
+            	}
+            	switch (option) {
+            	case 0:
+            		System.out.println("Please input product keyword:");
+            		Scanner input0 = new Scanner(System.in);
+            		String keyword = input0.nextLine();
+            		SearchController.searchProduct(keyword);
+            		break;
+    			case 1:
+    				System.out.println("Please select product id");
+    				Scanner input2 = new Scanner(System.in);
+    				int pid = input2.nextInt();
+    				System.out.println("Please select product number");
+    				Scanner input3 = new Scanner(System.in);
+    				int pNumber = input3.nextInt();
+    				PurchaseController.cart = PurchaseController.addCartList(PurchaseController.cart,pid,pNumber,PurchaseController.productList);
+    				
+    				break;
+    			case 2:
+    				PurchaseController.showCartList(PurchaseController.cart);
+    				break;
+    			case 3:
+    				PurchaseController.removeCartProduct(PurchaseController.cart);
+    				break;
+    			case 4:
+    				PurchaseController.checkOut(PurchaseController.cart);
+    				exit = true;
+    				break;
+    			case 5:
+    				displayShelf();
+    				break;
+    			case 6:
+    				exit = true;
+    				break;
+    			default:
+    				break;
+    			}
         	}
-        	else {
-        		System.out.println("You can only input from 1 to 3");
-        	}
-        	switch (option) {
-			case 1:
-				System.out.println("Please select product id");
-				Scanner input2 = new Scanner(System.in);
-				int pid = input2.nextInt();
-				System.out.println("Please select product number");
-				Scanner input3 = new Scanner(System.in);
-				int pNumber = input3.nextInt();
-				cart = PurchaseController.addCartList(cart,pid,pNumber,productList);
-				break;
-			case 2:
-				
-				break;
-			case 3:
-				
-				break;
-			default:
-				break;
-			}
     	}
-    	
 
     }
     
     public void menu()
     {
-    	boolean exist = false;
-    	while(!exist)
+    	boolean exit = false;
+    	while(!exit)
     	{
     		boolean valid = false;
         	while(!valid) {
@@ -252,15 +286,19 @@ public class UserInterface
             	System.out.println("Press 1 to add product");
             	System.out.println("Press 2 to delete product");
             	System.out.println("Press 3 to edit product");
-            	System.out.println("Press 4 to log out");
+            	System.out.println("Press 4 to delete customer account");
+            	System.out.println("Press 5 to check order information");
+            	System.out.println("Press 6 to confirm order");
+            	System.out.println("Press 7 to display product");
+            	System.out.println("Press 8 to log out");
             	Scanner input = new Scanner(System.in);
                 int option = input.nextInt();
-                if (option >= 1 && option <= 4)
+                if (option >= 1 && option <= 8)
                 {
                     valid = true;
                 }
                 else {
-                	System.out.println("You can only input 1 to 4!");
+                	System.out.println("You can only input 1 to 6!");
                 }
             
         	    switch (option) {
@@ -272,14 +310,24 @@ public class UserInterface
         			break;
         		case 3:
         			ManageProductController.editProduct();
+        			displayShelf();
         			break;
         		case 4:
         			
 //        			AccountController.logOut();
         			AccountController.deleteAccount();
         			break;
-        		case 5:
-        			exist = true;
+        		case 5 :
+        			TransactionController.checkOrderInfo();
+        			break;
+        		case 6:
+        			TransactionController.confirmOrder();
+        			break;
+        		case 7:
+        			displayShelf();
+        			break;
+        		case 8:
+        			exit = true;
         			break;
         		default:
         			break;

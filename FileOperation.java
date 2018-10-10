@@ -19,7 +19,7 @@ public class FileOperation {
 //			} catch (Exception e) {
 //				e.printStackTrace();
 //			}
-			System.out.println("The file is already exist");
+//			System.out.println("The file is already exist");
 		}
 		else {
 			try {
@@ -41,7 +41,7 @@ public class FileOperation {
 			bw.newLine();
 			bw.flush();
 			bw.close();
-			System.out.println("The AccountInfo is writen successfully!");
+//			System.out.println("The AccountInfo is writen successfully!");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -74,9 +74,49 @@ public class FileOperation {
 			{
 				String content = product.toString(); 
 				bw.write(content);
-				bw.newLine();
-				
+				bw.newLine();				
 			}
+			bw.flush();
+			bw.close();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static void writeShelfFile(ArrayList<ProductShelf> productShelfs)
+	{
+		createFile("Shelf.txt");
+		File file = new File("./Shelf.txt");
+		try {
+			FileWriter out = new FileWriter(file);
+			BufferedWriter bw = new BufferedWriter(out);
+			
+			for(ProductShelf shelf:productShelfs)
+			{
+				String content = shelf.toString();
+				bw.write(content);
+				bw.newLine();
+			}
+
+			bw.flush();
+			bw.close();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+	public static void writeCusInfoFile(String content)
+	{
+		File file = new File("./CustomerAccount.txt");
+		try {
+			FileWriter out = new FileWriter(file,true);
+			BufferedWriter bw = new BufferedWriter(out);
+			
+			bw.write(content);
+			bw.newLine();
 			bw.flush();
 			bw.close();
 		} catch (Exception e) {
@@ -84,7 +124,24 @@ public class FileOperation {
 		}
 	}
 	
-	
+	public static void saveCusInfoFile(ArrayList<Customer> customers)
+	{
+		File file = new File("./CustomerAccount.txt");
+		try {
+			FileWriter out = new FileWriter(file);
+			BufferedWriter bw = new BufferedWriter(out);
+			for(Customer customer:customers)
+			{
+				bw.write(customer.toString());
+				bw.newLine();
+			}
+				
+			bw.flush();
+			bw.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	
 	
 }
