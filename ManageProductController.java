@@ -53,8 +53,14 @@ public class ManageProductController {
 	{
 		System.out.println("Please input the number of product you want to edit");
 		Scanner input = new Scanner(System.in);
-		int productNumber = input.nextInt() - 1;
-		System.out.println("The selected product is : " + pc.productList.get(productNumber).getProductName());
+		int productNumber = input.nextInt();
+		int realProductNumber = 0;
+		for (int i = 0;i < pc.productList.size();i ++)
+		{
+			if (pc.productList.get(i).getProductID() == productNumber)
+				realProductNumber = i;
+		}
+		System.out.println("The selected product is : " + pc.productList.get(realProductNumber).getProductName());
 		System.out.println("Choose what you want to edit");
 		System.out.println("1:product name 2:saleMethod 3:shelfLife 4:source 5:category 6:price 7:status");
 		Scanner input2 = new Scanner(System.in);
@@ -64,45 +70,45 @@ public class ManageProductController {
 			System.out.println("Please input new product name");
 			Scanner input3 = new Scanner(System.in);
 			String newProductName = input3.nextLine();
-			pc.productList.get(productNumber).setProductName(newProductName);
+			pc.productList.get(realProductNumber).setProductName(newProductName);
 			break;
 		case 2:
 			System.out.println("Please input new saleMethod");
 			Scanner input4 = new Scanner(System.in);
 			String newSaleMethod = input4.nextLine();
-			pc.productList.get(productNumber).setSaleMethod(newSaleMethod);
+			pc.productList.get(realProductNumber).setSaleMethod(newSaleMethod);
 			break;
 		case 3:
 			System.out.println("Please input new shelfLife");
 			Scanner input5 = new Scanner(System.in);
 			int newShelfLife = input5.nextInt();
-			pc.productList.get(productNumber).setShelfLife(newShelfLife);
+			pc.productList.get(realProductNumber).setShelfLife(newShelfLife);
 			break;
 		case 4:
 			System.out.println("Please input new source");
 			Scanner input6 = new Scanner(System.in);
 			String newSource = input6.nextLine();
-			pc.productList.get(productNumber).setSource(newSource);
+			pc.productList.get(realProductNumber).setSource(newSource);
 			break;
 		case 5:
 			System.out.println("Please input new category");
 			Scanner input7 = new Scanner(System.in);
 			String newCategory = input7.nextLine();
-			pc.productList.get(productNumber).setCategory(newCategory);
+			pc.productList.get(realProductNumber).setCategory(newCategory);
 			break;
 		case 6:
 			System.out.println("Please input new price");
 			Scanner input8 = new Scanner(System.in);
 			int newPrice = input8.nextInt();
-			pc.productList.get(productNumber).setPrice(newPrice);
+			pc.productList.get(realProductNumber).setPrice(newPrice);
 			break;
 		case 7:
-			if (pc.productShelfs.get(productNumber).equals("available"))
+		        if (pc.productShelfs.get(realProductNumber).getStatus().equals("available"))
 			{
-				pc.productShelfs.get(productNumber).setStatus("out of stack");
+				pc.productShelfs.get(realProductNumber).setStatus("out of stack");
 			}
 			else {
-				pc.productShelfs.get(productNumber).setStatus("available");
+				pc.productShelfs.get(realProductNumber).setStatus("available");
 			}
 			System.out.println("Change status successful!");
 			break;
