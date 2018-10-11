@@ -1,16 +1,9 @@
-     
-    
-    
     import java.io.BufferedReader;
     import java.io.File;
     import java.io.FileReader;
     import java.util.*;
-    import java.util.Scanner;
-    
-    
-    
+    import java.util.Scanner;    
     import java.util.ArrayList;
-    
     
     /**
      * Write a description of class UserInterface here.
@@ -132,8 +125,18 @@
         {
             System.out.println("Please input your username:");
             userName = input.nextLine();
+            while (userName.trim().length() < 6 || userName.trim().isEmpty())
+            {
+                System.out.println("Username must not be empty and has more than 5 characters");
+                userName = input.nextLine();
+            }
             System.out.println("Please input your password");
             passWord = input.nextLine();
+            while (passWord.trim().length() < 6 || passWord.trim().isEmpty())
+            {
+                System.out.println("Password must not be empty and has more than 5 characters");
+                passWord = input.nextLine();
+            }
             if(i == 1)
             {
                 if(AccountController.testLogin(userName,passWord))
@@ -160,7 +163,6 @@
     }
     
 
-    
     
     public void showShelfInterface()
     {
