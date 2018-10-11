@@ -208,6 +208,7 @@
         {
             product.displayProductInfo();
         }
+        System.out.println();
     }
     
     public void displayShelf()
@@ -256,7 +257,7 @@
                     System.out.println("Please input product keyword:");
                     Scanner input0 = new Scanner(System.in);
                     String keyword = input0.nextLine();
-                    while (keyword.trim().isEmpty())
+                    while (keyword.trim().isEmpty() || keyword.trim().matches(".*[1-9].*"))
                     {
                         System.out.println("Keyword must not be empty");
                         keyword = input0.nextLine();

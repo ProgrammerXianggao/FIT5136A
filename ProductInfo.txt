@@ -1,4 +1,0 @@
-1,Apples-Golden-Delicious,Kg,50,local,Fruit,3.5
-2,banana,Kg,60,china,Fruit,4.5
-3,orange,Kg,30,japan,Fruit,3.0
-5,grape,Kg,20,australia,shit,2.5

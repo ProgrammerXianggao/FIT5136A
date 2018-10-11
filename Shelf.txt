@@ -1,4 +1,0 @@
-1,Apples-Golden-Delicious,Kg,50,local,Fruit,3.5,2019-06-17,available,yes
-2,banana,Kg,60,china,Fruit,4.5,2019-08-06,available,no
-3,orange,Kg,30,japan,Fruit,3.0,2019-03-10,available,no
-5,grape,Kg,20,australia,Fruit,2.5,2019-01-19,out of stack,no
