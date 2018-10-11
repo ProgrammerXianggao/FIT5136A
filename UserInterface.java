@@ -42,7 +42,11 @@
             {
                 displayCustomerInterface();
                 menuCustomer();
-            }       
+            }
+            else if(userStatus.equals("leave"))
+            {
+                System.out.println("Goodbye");
+            }
         }
         
         
@@ -106,7 +110,7 @@
                     loginInterface(2);
                     break;
                 case 5:
-                    
+                    userStatus = "leave";
                     break;
                 default:
                     break;
