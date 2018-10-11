@@ -256,6 +256,11 @@
                     System.out.println("Please input product keyword:");
                     Scanner input0 = new Scanner(System.in);
                     String keyword = input0.nextLine();
+                    while (keyword.trim().isEmpty())
+                    {
+                        System.out.println("Keyword must not be empty");
+                        keyword = input0.nextLine();
+                    }
                     SearchController.searchProduct(keyword);
                     break;
                 case 1:
@@ -265,6 +270,11 @@
                     {
                         System.out.println("Please select product id");
                         Scanner input2 = new Scanner(System.in);
+                        while (!input2.hasNextInt())
+                        {
+                            System.out.println("Please enter a number");
+                            input2.next();
+                        }
                         pid = input2.nextInt();
                         available = PurchaseController.checkAvailable(pid, PurchaseController.productShelfs);
                         if(available.equals("out of stack"))
@@ -274,7 +284,12 @@
                     
                     System.out.println("Please select product number");
                     Scanner input3 = new Scanner(System.in);
-                    int pNumber = input3.nextInt();
+                    while (!input3.hasNextInt())
+                    {
+                        System.out.println("Please enter a number");
+                        input3.next();
+                    }
+                    int pNumber = input3.nextInt();   
                     PurchaseController.cart = PurchaseController.addCartList(PurchaseController.cart,pid,pNumber,PurchaseController.productList);
                     
                     break;

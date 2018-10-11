@@ -1,2 +1,0 @@
-1,defaultCustomer,customerAuthority,123456
-2,dsahjk,customerAuthority,123
