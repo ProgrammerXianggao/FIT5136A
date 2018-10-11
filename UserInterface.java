@@ -166,7 +166,6 @@
     
     public void showShelfInterface()
     {
-        
         FileOperation.readProduct();
         FileOperation.readShelf();
         displayProduct();
@@ -207,13 +206,14 @@
         }
     }
     
-    public  void displayShelf()
+    public void displayShelf()
     {
         System.out.println("----------Shelf----------");
         for(ProductShelf shelf:PurchaseController.productShelfs)
         {
             shelf.displayShelfInfo();
         }
+        System.out.println();
     }
     
     
@@ -234,13 +234,18 @@
                 System.out.println("Press 5 to display product");
                 System.out.println("Press 6 to log out");
                 Scanner input = new Scanner(System.in);
+                while (!input.hasNextInt())
+                {
+                    System.out.println("Please enter a number");
+                    input.next();
+                }
                 int option = input.nextInt();
                 if (option >= 0 && option <= 6)
                 {
                     valid = true;
                 }
                 else {
-                    System.out.println("You can only input from 1 to 4");
+                    System.out.println("You can only input from 1 to 6");
                 }
                 switch (option) {
                 case 0:
@@ -310,6 +315,11 @@
                 System.out.println("Press 7 to display product");
                 System.out.println("Press 8 to log out");
                 Scanner input = new Scanner(System.in);
+                while (!input.hasNextInt())
+                {
+                    System.out.println("Please enter a number");
+                    input.next();
+                }
                 int option = input.nextInt();
                 if (option >= 1 && option <= 8)
                 {
