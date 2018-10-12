@@ -35,7 +35,6 @@
             initialInterface();
             if(userStatus.equals("storeOwner")) 
             {
-                
                 menu();
             }
             else if(userStatus.equals("customer"))
@@ -101,7 +100,6 @@
                     initialInterface();
                     break;
                 case 3:
-                    
                     userStatus = "customer";
                     AccountController.regist();
                     break;
@@ -123,23 +121,44 @@
         String userName;
         String passWord;
         boolean flag = false;
+        boolean flag2 = false;
         Scanner input = new Scanner(System.in);
         System.out.println("This is login page!");
         while(!flag)
         {
-            System.out.println("Please input your username:");
+            System.out.println("Please input your username: (Enter x/X to exit)");
             userName = input.nextLine();
             while (userName.trim().length() < 6 || userName.trim().isEmpty())
             {
+                if (userName.trim().toLowerCase().equals("x"))
+                {
+                    flag2 = true;
+                    break;
+                }
                 System.out.println("Username must not be empty and has more than 5 characters");
                 userName = input.nextLine();
             }
-            System.out.println("Please input your password");
+            if (flag2 == true)
+            {
+                userStatus = "leave";
+                break;
+            }
+            System.out.println("Please input your password: (Enter x/X to exit)");
             passWord = input.nextLine();
             while (passWord.trim().length() < 6 || passWord.trim().isEmpty())
             {
+                if (passWord.trim().toLowerCase().equals("x"))
+                {
+                    flag2 = true;
+                    break;
+                }
                 System.out.println("Password must not be empty and has more than 5 characters");
                 passWord = input.nextLine();
+            }
+            if (flag2 == true)
+            {
+                userStatus = "leave";
+                break;
             }
             if(i == 1)
             {
