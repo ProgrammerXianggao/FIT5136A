@@ -144,7 +144,7 @@ public class PurchaseController {
         Scanner input = new Scanner(System.in);
         String emailAddress = input.nextLine();
         while (emailAddress.trim().isEmpty() || !emailAddress.trim().
-        matches("^([a-zA-Z0-9]+)[@]([a-zA-Z0-9]+)[.]([a-zA-Z])$")) 
+        matches("^([a-zA-Z0-9])+@([a-zA-Z0-9])+.([a-zA-Z])+$")) 
         {
             System.out.println("Email address must not be empty with correct format");
             emailAddress = input.nextLine();
@@ -152,7 +152,8 @@ public class PurchaseController {
         System.out.println("Please input your phoneNumber:");
         Scanner input2 = new Scanner(System.in);
         String phoneNumber = input.nextLine();
-        while (phoneNumber.trim().isEmpty() || phoneNumber.trim().matches(".*[a-zA-Z].*"))
+        while (phoneNumber.trim().isEmpty() || phoneNumber.trim().length() != 10
+        || phoneNumber.trim().matches(".*[a-zA-Z].*"))
         {
             System.out.println("Phone number must not be empty and no letter");
             phoneNumber = input2.nextLine();
