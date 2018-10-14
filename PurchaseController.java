@@ -155,7 +155,7 @@ public class PurchaseController {
         while (phoneNumber.trim().isEmpty() || phoneNumber.trim().length() != 10
         || phoneNumber.trim().matches(".*[a-zA-Z].*"))
         {
-            System.out.println("Phone number must not be empty and no letter");
+            System.out.println("Phone number must not be empty, no letter, contain 10 characters");
             phoneNumber = input2.nextLine();
         }
         System.out.println("Please input your deliveryAddress:");
