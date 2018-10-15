@@ -178,7 +178,7 @@ public class PurchaseController {
         System.out.println("Please input your cvv Code:");
         Scanner input5 = new Scanner(System.in);
         String cvvCode = input5.nextLine();
-        while (cvvCode.trim().isEmpty() || cardNumber.trim().length() != 3
+        while (cvvCode.trim().isEmpty() || cvvCode.trim().length() != 3
         || cvvCode.trim().matches(".*[a-zA-Z].*"))
         {
             System.out.println("CVV code must not be empty, no letter, contain 3 number");
